@@ -17,4 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PredictionScene.unity
     guid: 88022519cdae38a4b94081b2c9487cc0
+  - enabled: 1
+    path: Assets/Scenes/PredictionScene.unity
+    guid: 88022519cdae38a4b94081b2c9487cc0
+  - enabled: 1
+    path: Assets/Scenes/socialDistancing.unity
+    guid: e1bbf680d6c7e3648934eb786173fc8c
   m_configObjects: {}

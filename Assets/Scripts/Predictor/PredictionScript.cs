@@ -27,14 +27,15 @@ public class PredictionScript : MonoBehaviour
 
     void Update()
     {
-        if (_selection != null)
-        {
-            var selectionRenderer = _selection.GetComponent<Renderer>();
-            selectionRenderer.material = defaultMaterial;
-            _selection = null;
-        }
+        
         if (Input.GetMouseButtonDown(0))
         {
+            if (_selection != null)
+            {
+                var selectionRenderer = _selection.GetComponent<Renderer>();
+                selectionRenderer.material = defaultMaterial;
+                _selection = null;
+            }
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
@@ -51,6 +52,7 @@ public class PredictionScript : MonoBehaviour
                         dateText.text = "Date : " + selectionComponent.GetComponent<PredictionDataStorage>().date;
                         caseText.text = "Cases : " + selectionComponent.GetComponent<PredictionDataStorage>().cases;
                     }
+                    _selection = selection;
                 }
                 
             }
