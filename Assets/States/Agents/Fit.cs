@@ -3,9 +3,10 @@
 public class Fit : Person
 {
     public Fit(PersonStateMachine personMachine): base(personMachine){
-        hygieneStandard = healthStandard = .5f;
-        isMasked = Random.Range(0, 2) == 1 ? true : false;
-        willShakeHand = Random.Range(0, 2) == 1 ? true : false;
+        hygieneStandard = UIConfigSimulation.hygiene;
+        healthStandard = UIConfigSimulation.health;
+        isMasked = UIConfigSimulation.mask;
+        willShakeHand = UIConfigSimulation.handShake;
         CurrentPersonState = CurrentPersonStates.Fit;
         safetyStandard = 0;
         safetyStandard += (isMasked) ? .5f : 0;
