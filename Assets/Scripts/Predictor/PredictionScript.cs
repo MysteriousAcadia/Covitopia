@@ -12,8 +12,13 @@ public class PredictionScript : MonoBehaviour
 
     public Text dateText;
     public Text caseText;
-    
-    
+
+    [SerializeField] private string selectableTag = "Sphere";
+    [SerializeField] private Material highlight;
+
+    [SerializeField] private Material defaultMaterial;
+
+    private Transform _selection;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +27,12 @@ public class PredictionScript : MonoBehaviour
 
     void Update()
     {
+        if (_selection != null)
+        {
+            var selectionRenderer = _selection.GetComponent<Renderer>();
+            selectionRenderer.material = defaultMaterial;
+            _selection = null;
+        }
         if (Input.GetMouseButtonDown(0))
         {
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -29,14 +40,19 @@ public class PredictionScript : MonoBehaviour
             if (Physics.Raycast(ray, out hit))
             {
                 var selection = hit.transform;
-                var selectionComponent = hit.transform.gameObject;
-                var selectionRenderer = selection.GetComponent<Renderer>();
-                if (selectionRenderer != null)
+                if (selection.CompareTag(selectableTag))
                 {
-                    Debug.Log("Hit something");
-                    dateText.text = "Date : " + selectionComponent.GetComponent<PredictionDataStorage>().date;
-                    caseText.text = "Cases : " + selectionComponent.GetComponent<PredictionDataStorage>().cases;
+                    var selectionComponent = hit.transform.gameObject;
+                    var selectionRenderer = selection.GetComponent<Renderer>();
+                    if (selectionRenderer != null)
+                    {
+                        selectionRenderer.material = highlight;
+                        Debug.Log("Hit something");
+                        dateText.text = "Date : " + selectionComponent.GetComponent<PredictionDataStorage>().date;
+                        caseText.text = "Cases : " + selectionComponent.GetComponent<PredictionDataStorage>().cases;
+                    }
                 }
+                
             }
             
         }
