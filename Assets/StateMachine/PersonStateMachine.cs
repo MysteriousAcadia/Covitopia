@@ -8,6 +8,8 @@ public class PersonStateMachine : MonoBehaviour
     public Material[] stateMaterial;
     public MeshRenderer capsule;
 
+    public VisualiserHandler visualiser;
+
     public bool initiallyInfected;
 
     public void SetState(Person _state)
@@ -18,17 +20,26 @@ public class PersonStateMachine : MonoBehaviour
 
     public float radiusForInfection;
 
+    private void Awake()
+    {
+        visualiser = FindObjectOfType<VisualiserHandler>();
+    }
+
     private void Start()
     {
-        initiallyInfected = Random.Range(0, 2) == 0;
+        initiallyInfected = Random.Range(0f, 2f) < .2f;
         if (initiallyInfected)
         {
             this.SetState(new Infected(this));
+            visualiser.currentInfected++;
         }
         else
         {
             this.SetState(new Fit(this));
+            visualiser.currentFit++;
         }
+
+        visualiser.currentTotal++;
     }
 
     public void HandleProximity(Person other)
@@ -39,5 +50,10 @@ public class PersonStateMachine : MonoBehaviour
     public PersonStateMachine GetPersonStateMachine()
     {
         return this;
+    }
+
+    public void DestroyAgent()
+    {
+        Destroy(gameObject);
     }
 }

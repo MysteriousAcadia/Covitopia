@@ -8,6 +8,8 @@ public class AgentSpawner : MonoBehaviour
     public Transform waypointRoot;
     public int totalNumberToSpawn;
 
+    public VisualiserHandler visualiser;
+
     private void Start()
     {
         StartCoroutine(Spawn());
