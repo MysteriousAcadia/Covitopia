@@ -12,14 +12,19 @@ Covitopia is an AR app developed in unity by the team <b>Vikings</b>, for the Ha
 
 
 ## Screenshots
-<p float="left">
-  <img src="Screenshots/covidtopia.png" width="100"/>
 
+
+<p float="center">
+  <img src="Screenshots/covidtopia.png" width="100"  />
 
   <img src="Screenshots/predictor.png" width="100" /> 
   
   
   <img src="Screenshots/sim.png" width="100" />
+  <img src="Screenshots/simu.png" width="300"/>
+
+
+  <img src="Screenshots/socdist.png" width="300" /> 
 </p>
 
 App Demo can be found [here](https://youtu.be/sm-JpaAYQaM) 
